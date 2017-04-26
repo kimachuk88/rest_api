@@ -1,25 +1,11 @@
 package com.epam.mentorship.service.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="post")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class PostModel {
 
-    @XmlElement
-    protected int userId;
-
-    @XmlElement
-    protected int id;
-
-    @XmlElement
-    protected int title;
-
-    @XmlElement
-    protected int body;
+    private int userId;
+    private int id;
+    private String title;
+    private String body;
 
     public int getUserId() {
         return userId;
@@ -37,19 +23,28 @@ public class PostModel {
         this.id = id;
     }
 
-    public int getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(int title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public int getBody() {
+    public String getBody() {
         return body;
     }
 
-    public void setBody(int body) {
+    public void setBody(String body) {
         this.body = body;
+    }
+
+
+    @Override
+    public String toString(){
+        return "\n\nuserID: "+getUserId()+ ", \n"
+                + "ID: "+ getId() + ", \n"
+                + "title: " + getTitle() + ",\n"
+                + "body: "+getBody() ;
     }
 }
