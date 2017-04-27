@@ -1,6 +1,7 @@
 package com.epam.mentorship.service.utilities;
 
 import org.apache.log4j.Logger;
+import org.testng.annotations.DataProvider;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -11,12 +12,12 @@ import java.util.stream.Collectors;
 /**
  * Created by Uliana Pizhanska on 27/04/2017.
  */
-public class DataProvider {
+public class DataProvd {
 
-    private static Logger log = Logger.getLogger("WD");
+    private static Logger log = Logger.getLogger("RC: ");
 
-    @org.testng.annotations.DataProvider(name = "invalidLogin")
-    public static Object[][] invalidLogin() {
+    @DataProvider (name = "getPosts")
+    public static Object[][] getPosts() {
         return readData("src/main/resources/uri.csv");
     }
 
@@ -29,6 +30,7 @@ public class DataProvider {
                     .map(line -> line.split(";"))
                     .collect(Collectors.toList());
             data = list.toArray(new String[list.size()][]);
+            log.info("File is successfully read");
 
         }
         catch (FileNotFoundException e){

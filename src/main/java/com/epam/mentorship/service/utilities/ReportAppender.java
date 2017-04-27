@@ -11,11 +11,21 @@ import org.testng.Reporter;
 
 public class ReportAppender extends AppenderSkeleton {
 
+
     @Override
+    protected void append(LoggingEvent event) {
+
+        String log = getLayout().format(event);
+        log = log.replace("\n", "</br>");
+        Reporter.log(log, false);
+
+    }
+
+   /* @Override
     protected void append(final LoggingEvent event)
     {
         Reporter.log(eventToString(event));
-    }
+    }*/
 
     private String eventToString(final LoggingEvent event)
     {

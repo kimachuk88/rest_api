@@ -10,4 +10,4 @@
             <class name="com.epam.mentorship.service.test.TestClientMethods"/>
         </classes>
     </test>
-</suite> <!-- Suite -->
+</suite>
