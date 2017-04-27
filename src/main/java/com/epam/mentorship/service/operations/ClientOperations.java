@@ -8,7 +8,9 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -22,8 +24,8 @@ public class ClientOperations {
         client = Client.create();
     }
 
-    public ClientResponse getMethod (String URI) throws IOException {
-        return client.resource(URI).accept("application/json").get(ClientResponse.class);
+    public ClientResponse getMethod (URI myURI) throws IOException {
+        return client.resource(myURI).accept("application/json").get(ClientResponse.class);
     }
 
     public <T> T retrieveResourceFromResponse(ClientResponse response, Class<T> clazz)
