@@ -3,40 +3,34 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <!-- general application log -->
 
-    <appender name="MainLogFile" class="org.apache.log4j.FileAppender">
-        <param name="File" value="info.log" />
+    <appender name="fileAppender" class="org.apache.log4j.FileAppender">
         <param name="Threshold" value="INFO" />
+        <param name="File" value="logfile.log" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%-5p %t [%-40.40c] %x - %m%n" />
-        </layout>
-    </appender>
-    <appender name="ReportAppender" class="com.epam.mentorship.service.utilities.ReportAppender">
-        <param name="Threshold" value="INFO" />
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %p %c{1} - %m%n" />
-        </layout>
-    </appender>
-    <appender name="MainLogConsole" class="org.apache.log4j.ConsoleAppender">
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n" />
-        </layout>
-    </appender>
-    <appender name="ErrorLogFile" class="org.apache.log4j.FileAppender">
-        <param name="File" value="err.log" />
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%-5p %t [%-40.40c] %x - %m%n" />
+            <param name="ConversionPattern" value="%d %-5p [%c{1}] %m %n" />
         </layout>
     </appender>
 
-    <logger name="ErrorLoger">
-        <level value="ERROR" />
-        <appender-ref ref="ErrorLogFile" />
-    </logger>
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%p %c: %m%n"/>
+        </layout>
+    </appender>
+    
+    <appender name="reportAppender" class="com.epam.mentorship.service.utilities.ReportAppender">
+        <param name="Threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%c{1}] %m %n" />
+        </layout>
+    </appender>
+
+
     <root>
         <level value="INFO" />
-        <appender-ref ref="MainLogFile" />
-        <appender-ref ref="MainLogConsole" />
-        <appender-ref ref="ReportAppender"/>
+        <appender-ref ref="fileAppender" />
+        <appender-ref ref="console" />
+        <appender-ref ref="reportAppender"/>
 
     </root>
 </log4j:configuration>
