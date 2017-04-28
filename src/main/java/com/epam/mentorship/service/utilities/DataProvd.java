@@ -16,6 +16,14 @@ public class DataProvd {
 
     private static Logger log = Logger.getLogger("RC: ");
 
+    @DataProvider(name = "deletePosts")
+    public static Object[][] loginTitle() {
+        return new Object[][]{
+                {"1"},
+                {"3"}
+        };
+    }
+
     @DataProvider (name = "getPosts")
     public static Object[][] getPosts() {
         return readData("src/main/resources/uri.csv");
