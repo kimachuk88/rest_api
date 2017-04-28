@@ -70,4 +70,31 @@ public class TestClientMethods {
         log.info(response.toString());
     }
 
+    @Test(description = "1. Delete post by post ID" , dataProviderClass = DataProvd.class, dataProvider = "deletePosts")
+    public void deletePostById(String id) throws IOException {
+        try {
+            response = client.deleteMethod(new URI(MY_URI + "/" + id));
+        }
+        catch(URISyntaxException e){
+            log.error("Wrong URI");
+        }
+        Assert.assertNotNull(response);
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertTrue(response.getType().toString().contains("application/json"));
+        log.info(response.toString());
+    }
+
+    @Test(description = "1.Update some post's fields from file")
+    public void updatePost() throws IOException {
+        try {
+            response = client.putMethod(new URI(MY_URI +"/1"));
+        }
+        catch(URISyntaxException e){
+            log.error("Wrong URI");
+        }
+        Assert.assertNotNull(response);
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertTrue(response.getType().toString().contains("application/json"));
+        log.info(response.toString());
+    }
     }
