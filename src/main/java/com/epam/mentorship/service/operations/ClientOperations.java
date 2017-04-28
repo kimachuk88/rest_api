@@ -43,11 +43,17 @@ public class ClientOperations {
         return  client.resource(myURI).type("application/json").post(ClientResponse.class, createResourceJson());
     }
 
-
     public String createResourceJson() throws JsonProcessingException {
-        PostModel [] postModels = new PostModel[5];
-        postModels[0] = new PostModel(1,9494949,"Uliana", "Pizhanska");
-
-        return new ObjectMapper().writeValueAsString(postModels);
+        return new ObjectMapper().writeValueAsString(AdditionalOperations.readFromFile());
     }
+
+    public ClientResponse deleteMethod(URI myURI){
+        return client.resource(myURI).type("application/json").delete(ClientResponse.class);
+    }
+
+    public ClientResponse putMethod(URI myURI) throws JsonProcessingException {
+        return  client.resource(myURI).type("application/json").put(ClientResponse.class, createResourceJson());
+    }
+
+
 }

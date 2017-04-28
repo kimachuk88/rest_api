@@ -1,12 +1,12 @@
 package com.epam.mentorship.service.operations;
 
 import com.epam.mentorship.service.model.PostModel;
+import org.apache.commons.io.FileUtils;
+import org.apache.velocity.texen.util.FileUtil;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import org.apache.commons.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -16,8 +16,7 @@ import java.util.Objects;
  */
 public class AdditionalOperations {
     private static PostModel[] postModels;
-    private static FileReader fileReader;
-    private static BufferedReader bufferedReader;
+    private static List<String> list;
 
     public List<Integer> postId(PostModel[] postModels) {
         List<Integer> id = new ArrayList<>();
@@ -33,25 +32,17 @@ public class AdditionalOperations {
 
     public static PostModel[] readFromFile(){
         try {
-            fileReader = new FileReader("src/main/resources/posts.txt");
-        }
-        catch (FileNotFoundException e){
-
-        }
-        bufferedReader = new BufferedReader(fileReader);
-        String line= "";
-        String[] arrs=null;
-        int num=0;
-        try {
-            while ((line = bufferedReader.readLine()) != null) {
-                arrs = line.split(",");
-                postModels[num] = new PostModel(Integer.parseInt(arrs[0]),Integer.parseInt(arrs[1]),arrs[2], arrs[3]);
-                num++;
-            }
+            list = FileUtils.readLines(new File("src/main/resources/posts.txt"));
         }
         catch (IOException e){
 
         }
+        String[] lines = list.toArray(new String[list.size()]);
+        postModels = new PostModel[lines.length];
+        for(int i = 0; i < lines.length; i++) {
+            postModels[i] = new PostModel(lines[i]);
+        }
+
         return postModels;
     }
 }
