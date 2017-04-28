@@ -11,11 +11,12 @@ public class PostModel {
 
     }
 
-    public PostModel(int userId, int id, String title, String body){
-        this.userId = userId;
-        this.id = id;
-        this.title = title;
-        this.body = body;
+    public PostModel(String line) {
+        String[] split = line.split(",");
+        this.userId = Integer.parseInt(split[0]);
+        this.id = Integer.parseInt(split[1]);
+        this.title = split[2];
+        this.body = split[3];
     }
 
     public int getUserId() {
