@@ -22,15 +22,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                script{
-                    mvn -Dtest=TestClientMethods test
-                }
-                [$class: 'Publisher']
+               
+                sh 'mvn -Dtest=TestClientMethods test'
             }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                post{
+               
+                [$class: 'Publisher']
             }
         }
     }
