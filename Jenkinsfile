@@ -10,6 +10,9 @@ pipeline {
             steps{
                 bat 'mvn -Dtest=TestClientMethods test'  
             }
+            post{
+                archive (includes: 'pkg/*.gem')
+            }
              
         }
     }
