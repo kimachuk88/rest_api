@@ -1,10 +1,5 @@
 pipeline {
     agent any
-    tools { 
-        maven 'Maven 3.3.9' 
-        jdk 'jdk8' 
-    }
-
     stages {
         
         stage ('Initialize') {
@@ -21,14 +16,16 @@ pipeline {
             }
         }
         stage('Test') {
-            steps {
-               
+           
+                  withMaven(
+        maven: 'M3',
+   
+        mavenSettingsConfig: 'my-maven-settings',
+        mavenLocalRepo: '.repository') {
                 sh 'mvn -Dtest=TestClientMethods test'
-            }
-                post{
-               
-                [$class: 'Publisher']
-            }
+                  }
+           
+             
         }
     }
 }
