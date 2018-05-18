@@ -9,7 +9,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                mvn -Dtest=TestClientMethods test
+                script{
+                    mvn -Dtest=TestClientMethods test
+                }
                 [$class: 'Publisher']
             }
         }
