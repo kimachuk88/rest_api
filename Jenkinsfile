@@ -9,10 +9,8 @@ pipeline {
         stage('Test') {
             steps{
                 bat 'mvn -Dtest=TestClientMethods test'  
-            }
-            post{
-                archive (includes: 'pkg/*.gem')
-            }
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/surefire-reports/html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+            }  
              
         }
     }
