@@ -9,7 +9,7 @@ pipeline {
         stage('Test') {
             steps{
 
-                sh 'mvn -Dtest=TestClientMethods test'
+                sh 'mvn clean'
                   
             }
              
