@@ -9,7 +9,13 @@ pipeline {
         stage('Test') {
             steps{
                 bat 'mvn -Dtest=TestClientMethods test'  
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/surefire-reports/html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                publishHTML([allowMissing: false,
+                             alwaysLinkToLastBuild: false,
+                             keepAll: true,
+                             reportDir: 'target/surefire-reports',
+                             reportFiles: 'index.html',
+                             reportName: 'HTML Report',
+                             reportTitles: ''])
             }  
              
         }
