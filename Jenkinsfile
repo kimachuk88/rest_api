@@ -16,6 +16,8 @@ pipeline {
                              reportFiles: 'index.html',
                              reportName: 'HTML Report',
                              reportTitles: ''])
+                archiveArtifacts '.log'
+
             }  
              
         }
