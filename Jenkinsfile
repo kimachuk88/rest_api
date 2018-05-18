@@ -12,11 +12,11 @@ pipeline {
                 publishHTML([allowMissing: false,
                              alwaysLinkToLastBuild: false,
                              keepAll: true,
-                             reportDir: 'target/surefire-reports',
+                             reportDir: 'target/surefire-reports/html',
                              reportFiles: 'index.html',
                              reportName: 'HTML Report',
                              reportTitles: ''])
-                archiveArtifacts '.log'
+                archiveArtifacts '*.log'
 
             }  
              
